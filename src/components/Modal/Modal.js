@@ -20,16 +20,17 @@ export default class Modal extends Component {
     }
   };
 
-  handleBackdropClick = event => {
-    if (event.currentTarget === event.target) {
-      this.props.onClick();
-    }
-  };
-
   render() {
     const { onClick, image } = this.props;
     return createPortal(
-      <div className={s.overlay} onClick={onClick}>
+      <div
+        className={s.overlay}
+        onClick={e => {
+          if (e.target === e.currentTarget) {
+            onClick();
+          }
+        }}
+      >
         <div className={s.modal}>
           <img src={image} alt={image.tags} />
         </div>
