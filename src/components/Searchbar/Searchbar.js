@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 class Searchbar extends Component {
   state = {
     name: '',
+    page: 1,
   };
 
   handleSubmit = e => {
@@ -17,6 +18,7 @@ class Searchbar extends Component {
     }
 
     this.props.onSubmit(this.state.name);
+
     this.reset();
   };
 
