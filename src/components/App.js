@@ -28,7 +28,7 @@ class App extends Component {
     if (prevName !== nextName) {
       this.setState({ status: 'pending', page: 1, arrayImage: [] });
     }
-    if (prevPage !== nextPage && nextPage !== 1) {
+    if (prevPage !== nextPage) {
       this.fetchSearchMovies(nextName, nextPage);
     }
     if (nextPage > 1) {
@@ -44,9 +44,10 @@ class App extends Component {
     this.fetchSearchMovies(name, this.state.page);
   };
 
-  handleLoadButton() {
+  handleLoadButton = () => {
+    console.log(this);
     this.setState(prevState => ({ page: prevState.page + 1 }));
-  }
+  };
 
   fetchSearchMovies(nextName, nextPage) {
     Api.fetchSearchMovies(nextName, nextPage)
@@ -100,7 +101,7 @@ class App extends Component {
             toggleModal={largeImageURL => this.toggleModal(largeImageURL)}
           />
           {arrayImage.length !== 0 && (
-            <Button onClick={() => this.handleLoadButton()} />
+            <Button onClick={this.handleLoadButton} />
           )}
 
           {showModal && (
