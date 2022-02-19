@@ -1,4 +1,5 @@
 import s from './ImageGalleryItem.module.css';
+import PropTypes from 'prop-types';
 
 export default function ImageGalleryItem({
   id,
@@ -21,3 +22,11 @@ export default function ImageGalleryItem({
     </li>
   );
 }
+
+ImageGalleryItem.protoTypes = {
+  id: PropTypes.number,
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

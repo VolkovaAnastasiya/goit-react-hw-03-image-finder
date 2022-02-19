@@ -94,8 +94,6 @@ class App extends Component {
     if (status === 'resolved') {
       return (
         <div className={s.App}>
-          {status === 'idle' && <Searchbar onSubmit={this.handleSubmit} />}
-
           <Searchbar onSubmit={this.handleSubmit} />
           <ImageGallery
             arrayImage={arrayImage}

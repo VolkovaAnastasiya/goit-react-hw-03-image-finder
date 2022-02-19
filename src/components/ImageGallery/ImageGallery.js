@@ -1,5 +1,6 @@
 import ImageGalleryItem from 'components/ImageGalleryItem';
 import s from './ImageGallery.module.css';
+import PropTypes from 'prop-types';
 
 function ImageGallery({ arrayImage, toggleModal }) {
   return (
@@ -18,5 +19,9 @@ function ImageGallery({ arrayImage, toggleModal }) {
     </ul>
   );
 }
+ImageGallery.protoTypes = {
+  onClickItem: PropTypes.func.isRequired,
+  arrayImage: PropTypes.array.isRequired,
+};
 
 export default ImageGallery;
