@@ -17,6 +17,7 @@ class App extends Component {
     error: '',
     showModal: false,
     bigImage: '',
+    totalHits: 1,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -53,6 +54,7 @@ class App extends Component {
       .then(data => {
         this.setState(prevState => {
           return {
+            totalHits: data.totalHits,
             prevState,
             arrayImage: [...prevState.arrayImage, ...data.hits],
             status: 'resolved',
@@ -77,7 +79,8 @@ class App extends Component {
   };
 
   render() {
-    const { arrayImage, bigImage, showModal, status, error } = this.state;
+    const { arrayImage, bigImage, showModal, status, error, totalHits } =
+      this.state;
 
     if (status === 'pending') {
       return <Loader />;
@@ -91,6 +94,9 @@ class App extends Component {
       return <Searchbar onSubmit={this.handleSubmit} />;
     }
 
+    console.log(totalHits);
+    console.log(arrayImage.length);
+
     if (status === 'resolved') {
       return (
         <div className={s.App}>
@@ -99,10 +105,10 @@ class App extends Component {
             arrayImage={arrayImage}
             toggleModal={largeImageURL => this.toggleModal(largeImageURL)}
           />
-          {arrayImage.length !== 0 && (
+
+          {arrayImage.length !== totalHits && (
             <Button onClick={() => this.handleLoadButton()} />
           )}
-
           {showModal && (
             <Modal
               onClick={() => {
